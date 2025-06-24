@@ -9,6 +9,17 @@
   --green: #16bf78;
   --sand: #dcb773;
   --sand-light: #edd9a9;
+  --success: var(--green);
+}
+
+body.dark {
+  --dark: #121212;
+  --grey-dark: #2a2a2a;
+  --grey: #888;
+  --grey-light: #444;
+  --success: var(--green);
+  --sand: #a88c55;
+  --sand-light: #a88c55;
 }
 
 .order {
@@ -25,6 +36,7 @@
   cursor: pointer;
   border-radius: 32px;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
   -webkit-tap-highlight-color: transparent;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -42,6 +54,7 @@
   font-weight: 500;
   opacity: var(--o);
   transition: opacity 0.3s ease;
+  font-family: "Tajawal", "Poppins", sans-serif;
 }
 .order span.default {
   transition-delay: 0.3s;
@@ -69,22 +82,15 @@
   transform: scale(0.96);
 }
 .order .lines {
-  opacity: 0;
+  height: 2px;
+  background: var(--success);
+  width: 0;
   position: absolute;
-  height: 3px;
-  background: var(--white);
-  border-radius: 2px;
-  width: 6px;
-  top: 30px;
-  left: 100%;
-  box-shadow: 15px 0 0 var(--white), 30px 0 0 var(--white),
-    45px 0 0 var(--white), 60px 0 0 var(--white), 75px 0 0 var(--white),
-    90px 0 0 var(--white), 105px 0 0 var(--white), 120px 0 0 var(--white),
-    135px 0 0 var(--white), 150px 0 0 var(--white), 165px 0 0 var(--white),
-    180px 0 0 var(--white), 195px 0 0 var(--white), 210px 0 0 var(--white),
-    225px 0 0 var(--white), 240px 0 0 var(--white), 255px 0 0 var(--white),
-    270px 0 0 var(--white), 285px 0 0 var(--white), 300px 0 0 var(--white),
-    315px 0 0 var(--white), 330px 0 0 var(--white);
+  left: 0;
+  top: 21px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 60%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 40%, black 60%, transparent 100%);
+  transition: width 0.5s;
 }
 .order .back,
 .order .box {
@@ -234,6 +240,9 @@
   height: 21px;
   right: 100%;
   top: 21px;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 .order .box:before,
 .order .box:after {
@@ -284,6 +293,9 @@
 .order.animate .box {
   -webkit-animation: box 10s ease forwards;
   animation: box 10s ease forwards;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 .order.animate .lines {
   -webkit-animation: lines 10s ease forwards;
@@ -475,4 +487,138 @@ body .dribbble {
 body .dribbble img {
   display: block;
   height: 28px;
+}
+
+/* Responsive styles for the button */
+@media screen and (max-width: 768px) {
+    button.order {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    button.order {
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    button.order .truck {
+        width: 48px;
+        height: 33px;
+        left: 100%;
+        top: 8px;
+    }
+    
+    button.order .default {
+        transform: translateY(-10px);
+    }
+    
+    button.order .success {
+        transform: translateY(-10px);
+    }
+    
+    button.order .box {
+        width: 17px;
+        height: 17px;
+        right: 70%;
+        top: 16px;
+    }
+    
+    button.order .lines {
+    }
+    /* Responsive box animation for 480px */
+    @keyframes box {
+      8%, 10% {
+        transform: translateX(32px);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(85px);
+        opacity: 1;
+      }
+      26% {
+        transform: translateX(85px);
+        opacity: 0;
+      }
+      27%, 100% {
+        transform: translateX(0px);
+        opacity: 0;
+      }
+    }
+    @-webkit-keyframes box {
+      8%, 10% {
+        transform: translateX(32px);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(85px);
+        opacity: 1;
+      }
+      26% {
+        transform: translateX(85px);
+        opacity: 0;
+      }
+      27%, 100% {
+        transform: translateX(0px);
+        opacity: 0;
+      }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    button.order {
+        height: 45px;
+        font-size: 13px;
+    }
+    
+    button.order .truck {
+        width: 40px;
+        height: 27px;
+        left: 100%;
+        top: 7px;
+    }
+    button.order .box {
+        width: 14px;
+        height: 14px;
+        right: 60%;
+        top: 13px;
+    }
+    /* Responsive box animation for 400px */
+    @keyframes box {
+      8%, 10% {
+        transform: translateX(26px);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(70px);
+        opacity: 1;
+      }
+      26% {
+        transform: translateX(70px);
+        opacity: 0;
+      }
+      27%, 100% {
+        transform: translateX(0px);
+        opacity: 0;
+      }
+    }
+    @-webkit-keyframes box {
+      8%, 10% {
+        transform: translateX(26px);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(70px);
+        opacity: 1;
+      }
+      26% {
+        transform: translateX(70px);
+        opacity: 0;
+      }
+      27%, 100% {
+        transform: translateX(0px);
+        opacity: 0;
+      }
+    }
 }
